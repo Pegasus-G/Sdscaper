@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+        <script src="https://unpkg.zhimg.com/vue@2.6.14/dist/vue.js"></script>
+        <script src="https://unpkg.zhimg.com/axios/dist/axios.min.js"></script>
+        <link rel="stylesheet" href="https://unpkg.zhimg.com/element-ui/lib/theme-chalk/index.css">
+        <script src="https://unpkg.zhimg.com/element-ui/lib/index.js"></script>
+        <script type="text/javascript" src="http://api.tianditu.gov.cn/api?v=4.0&tk=6db4a745adc72c2a4bf88004f3514238"></script>
+        <title>基于多源数据的噪音时空分布可视化系统</title>
+    </head>
+    
+    <body>
+        <div id="app">
+            <el-container>
+                <el-header id="header">
+                    <h1 id="h1_title">基于多源数据的噪音时空分布可视化系统</h1>
+                    
+                    <div id="div_headlink">
+                        <a href="Noice_Location_Record_v1.0.apk"><el-button type="primary" style="width:90px；margin-left:150px" @click="click_raw" plain>下载app</el-button></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <div class="linkbox linkbox-active"><a href="#" class="link" >主页</a></div>
+                        <div class="linkbox"><el-link type="info" class="link">关于</el-link></div>
+                        
+                    </div>
+                </el-header>
+                
+                <el-main id="main_body">
+                    <el-card class="card_map">
+                        <div id="mapDiv" style="height:600px;"></div>
+                        <div id="div_colorramptitle">颜色梯度图例-分贝(dB)</div>
+                        <div id="div_colorramp"></div>
+                        <div id="div_colorrampnum"><span>45</span><span id="span_right">80</span></div>
+                        
+                    </el-card>
+                    
+                    <div class="div_gap"></div>
+              
+                    <el-card class="card_box">
+                        <div class="div_boxtitle"><b>一些选项</b></div>
+                        <br>
+                        <el-input placeholder="请输入内容" v-model="inputwh" @keyup.enter.native="refreshData">
+                            <i slot="prefix" class="el-input__icon el-icon-search"></i>
+                        </el-input>
+                        <br>
+                        <br>
+                        <span class="span_sel">数据集:</span>
+                          <el-select @change="refreshData" v-model="tb" placeholder="请选择数据集" style="width:calc(100% - 78px)">
+                            <el-option
+                              v-for="item in tbs"
+                              :key="item.value"
+                              :label="item.label"
+                              :value="item.value">
+                            </el-option>
+                          </el-select>
+                        <br>
+                        <br>
+  
+                        <el-button type="primary" style="width:100%" @click="click_raw">显示所有数据点</el-button>
+                        <br><br>
+                        <span class="span_sel">像元大小:</span>
+                        <el-input placeholder="30" v-model="inputcellsize" style="width:50px" size="small"></el-input>
+                        <span class="span_sel">米</span>
+                        <el-button type="info" plain style="width:calc(100% - 190px)" @click="clickextentnew">{{button_name}}</el-button>
+                        <br><br>
+                        
+                        <span class="span_sel">范围:</span>
+                        <el-input placeholder="左上角坐标" v-model="input_lu" style="width:35%" size="small" disabled></el-input>-
+                        <el-input placeholder="右下角坐标" v-model="input_rd" style="width:35%" size="small" disabled></el-input>
+                            <br>
+                        <el-button type="primary" style="width:calc(50% - 10px);margin:20px 0 0 0;" @click="click_idw">显示插值结果</el-button>
+                        <el-button type="warning" style="width:calc(50% - 10px);" @click="click_spr" plain>模拟扩散</el-button>
+                        <br><br>
+                        <b><span class="span_sel">鼠标位置分贝估计值: <b style="color:#0000FF">{{estdb}}</b></span></b>
+                        <br><br>
+                        <b style="margin-bottom:5px">户外噪音标准(分贝)</b><br>
+                         <span  :class="{active:est>0 & est<20}">0－20 分贝：很静、几乎感觉不到</span><br>
+<span :class="{activered:est>20 & est<40}">20 －40 分贝：安静、犹如轻声絮语</span><br>
+<span :class="{activered:est>40 & est<60}">40 －60 分贝：一般、普通室内谈话</span><br>
+<span :class="{activered:est>60 &est<70}">60 －70 分贝：吵闹、有损神经</span><br>
+<span :class="{activered:est>70 & est<90}">70 －90 分贝：很吵、神经细胞受到破坏</span><br>
+<span :class="{activered:est>90 & est<100}">90 －100 分贝：吵闹加剧、听力受损</span><br>
+<span :class="{activered:est>100 & est<120}">100 －120 分贝：难以忍受、呆一分钟即暂时致聋</span>
+<br>
+                        
+                    
+                    </el-card>
+
+                </el-main>
+                
+
+                <el-footer>
+                    <div id="div_footer">
+                        <span style="line-height:50px" @click="testfunc">科创2021 没什么版权 随便填一些东西好了</span>
+                    </div>
+                </el-footer>
+        </el-container>
+
+        </div>
+        <script src="myjs.js"></script>
+    </body>
+</html>

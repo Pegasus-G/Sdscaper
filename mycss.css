@@ -1,0 +1,108 @@
+body{
+    background-color: #E9FBFF;
+}
+a{
+    text-decoration:none;
+    color: #409EFF;
+}
+a :hover{
+    color: #FFFFFF;
+}
+#header{
+    border-color: #409EFF;
+    border-width: 0 0 3px 0;
+    border-style: solid;
+    box-shadow:0 4px 0 0 #ffffff;
+}
+#h1_title{
+    display: inline-block;
+    margin-top: 10px;
+    letter-spacing: 2px;
+    color:#0C4FBB;
+}
+#div_headlink{
+    display: inline-block;
+    position: absolute;
+    right: 20px;
+    height:58px;
+}
+.linkbox{
+    position: relative;
+    display: inline-block;
+    width: 33px;
+    height: 100%;
+    vertical-align: middle;
+    padding: 0 20px;
+}
+.linkbox-active{
+    background-color: #409EFF;
+    border-radius:10px 10px 0 0;
+}
+.link{
+    margin: 0 auto;
+    position: absolute;
+    top:18px;
+    font-size:16px;
+    color: white;
+    text-decoration:none;
+}
+.card_map{
+    display: inline-block;
+    width: calc((100% - 20px) / 3 * 2);
+    border-width: 0 0;
+}
+.card_box{
+    display: inline-block;
+    width: calc((100% - 20px) / 3 - 20px);
+    height: 712px;
+    border-width: 0 0;
+}
+
+.div_gap{
+    display: inline-block;
+    width: 20px;
+}
+#div_footer{
+    width: 25%;
+    height: 50px;
+    margin: 0 auto;
+    border-color: #FFFFFF;
+    border-width: 1px 0 0 0;
+    border-style: solid;
+    color: #666666;
+}
+.div_boxtitle{
+    font-size: 20px;
+    color:#666666;
+    border-color: #409EFF;
+    border-width: 0 0 2px 0;
+    border-style: solid;
+    padding-bottom: 10px;
+    
+}
+.span_sel{
+    display: inline-block;
+    margin: 0 20px 0 0;
+}
+
+#div_colorramp{
+    background-image:linear-gradient(to right, #00FF00 ,#FFFF00, #FF0000);
+    height:10px;
+    width:100%;
+    margin-top: 5px;
+}
+#div_colorramptitle{
+    width:100%;
+    margin-top: 15px;
+}
+#div_colorrampnum{
+    width:100%;
+    position: relative;
+}
+#span_right{
+    position: absolute;
+    right:0px;
+}
+.activered {
+      color: red;
+    }
